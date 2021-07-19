@@ -48,9 +48,13 @@ write.csv(tab, file = "/home/manel/Bureau/BD/donnee+pluvio/smv-complet/ML/replic
 # 1(the data have a normal distribution) and 0: the data do not have a normal distribution 
 x<-sample(1, (length(myList)), replace = TRUE)
 tab_pval<-cbind(x,x,x)
+tabf_pval<-cbind(x,x,x)
+tabn_pval<-cbind(x,x,x)
 
-# For each replicate : 
+# For each analysis : 
 # column 2 shows the analysis for the measured E.coli concentration and column 3 for the E.coli concentration predicted by the RF- based model 
+
+# Analysis for the dataset 
 colnames(tab_pval)<-c("replicat","ec-reel","ec-rf")
 for (k in 1:length(ldf_1)){
   ### Analysis of the p-value of the shapiro test 
@@ -62,6 +66,35 @@ for (k in 1:length(ldf_1)){
   
 }
 tab_pval
+
+# Analysis for the reasonable prediction
+colnames(tabf_pval)<-c("replicat","ec-reel","ec-rf")
+for (k in 1:length(ldf_1)){
+  ### Analysis of the p-value of the shapiro test 
+  rf_fit<-myList[[k]][which(myList[[k]][,16]=="fit"),1:15]
+  tabf_pval[k,1]<-names(myList[k])
+  if( shapiro.test(rf_fit[,13])$p.value > 0.05) {tabf_pval[k,2]<-1}
+  else { tabf_pval[k,2]<-0}
+  if( shapiro.test(rf_fit[,14])$p.value > 0.05) {tabf_pval[k,3]<-1}
+  else { tabf_pval[k,3]<-0}
+  
+}
+tabf_pval
+
+# Analysis for the innacute prediction
+colnames(tabn_pval)<-c("replicat","ec-reel","ec-rf")
+for (k in 1:length(ldf_1)){
+  ### Analysis of the p-value of the shapiro test 
+  rf_non<-myList[[k]][which(myList[[k]][,16]=="non"),1:15]
+  tabn_pval[k,1]<-names(myList[k])
+  if( shapiro.test(rf_non[,13])$p.value > 0.05) {tabn_pval[k,2]<-1}
+  else { tabn_pval[k,2]<-0}
+  if( shapiro.test(rf_non[,14])$p.value > 0.05) {tabn_pval[k,3]<-1}
+  else { tabn_pval[k,3]<-0}
+  
+}
+tabn_pval
+
 ### The data do not have a normal distribution 
 # Thus the correlation analyses will be performed by the spearman method. 
 ################################################################################################
