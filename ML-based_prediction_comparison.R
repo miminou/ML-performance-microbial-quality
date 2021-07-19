@@ -13,21 +13,24 @@ boxplot(log(smv$Ecoli), col="grey", ylab="Log (E.coli)")
 
 
 # Plot visualization of the performance results (RMSE, MAE and RPD) of the machine learning models
+library(readxl)
+setwd("/home/manel/Bureau/BD/donnee+pluvio/smv-complet/ML")
+
 par(mfrow=c(1,3))
-plot_performance6 <- read_excel("plot-performance6.xlsx", sheet = "rmse", 
+plot_performance <- read_excel("plot-performance.xlsx", sheet = "rmse", 
                                 col_types = c("numeric", "numeric", "numeric", 
                                               "numeric", "numeric", "numeric", 
                                               "numeric"))
-boxplot(plot_performance6[,2:7], main="RMSE", col="red")
+boxplot(plot_performance[,2:7], main="RMSE", col="red")
 
-plot_performance6 <- read_excel("plot-performance6.xlsx", sheet = "mae", 
+plot_performance <- read_excel("plot-performance.xlsx", sheet = "mae", 
                                 col_types = c("numeric", "numeric", "numeric", 
                                               "numeric", "numeric", "numeric", 
                                               "numeric"))
-boxplot(plot_performance6[,2:7], main="MAE", col="green")
+boxplot(plot_performance[,2:7], main="MAE", col="green")
 
-plot_performance6 <- read_excel("plot-performance6.xlsx", sheet = "rpd", 
+plot_performance <- read_excel("plot-performance.xlsx", sheet = "rpd", 
                                 col_types = c("numeric", "numeric", "numeric", 
                                               "numeric", "numeric", "numeric", 
                                               "numeric"))
-boxplot(plot_performance6[,2:7], main="RPD", col="blue")
+boxplot(plot_performance[,2:7], main="RPD", col="blue")
