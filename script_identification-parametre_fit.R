@@ -77,7 +77,7 @@ write.csv(rf_non, file = "/home/manel/Bureau/BD/donnee+pluvio/smv-complet/ML/rep
 ################################### Visualisation of values ####################################
 # Value range identifications
 smv <- read.csv("~/Bureau/BD/donnee+pluvio/smv-complet/donnee_brute_sans_na/smv.csv")
-summary(vdp)
+summary(smv)
 
 # Visualization by histograms of the values of each parameter to be optimized which gives a reasonable estimate 
 par(mfrow=c(2,2))
@@ -85,7 +85,7 @@ hist(rf[[3]], nclass = 1000, xlim = c(17.6, 26.6),main="",xlab = "Temperature", 
 axis(1, 17.6:26.6)
 hist(rf[[4]], nclass = 1000, xlim = c(430, 657), main="",xlab = "Conductivity", xaxt="n")
 axis(1, 430:657)
-hist(rf[[11]], nclass = 1000, xlim = c(0, 35), main="",xlab = "rainfall of the day before", xaxt="n")
+hist(rf[[11]], nclass = 1000, xlim = c(0, 35.4), main="",xlab = "rainfall of the day before", xaxt="n")
 axis(1, 0:35.4)
 hist(rf[[12]], nclass = 1000, xlim = c(4, 101), main="",xlab = "Flow", xaxt="n")
 axis(1, 4:101)
