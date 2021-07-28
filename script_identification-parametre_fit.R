@@ -20,7 +20,7 @@ names(myList)<-ldf_1 # renaming files
 ################################################################################################
 
 ################################### Analyse of predicted data ##################################
-#Group all 10 training sets together  
+#Group all 10 test sets together  
 rf_rep<-myList[[1]][,]
 for (k in 2:length(ldf_1)){
   r<-myList[[k]][,]
